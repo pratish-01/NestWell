@@ -1,19 +1,30 @@
 import React, { useState } from 'react';
 import { View, Text, TextInput, StyleSheet, TouchableOpacity, ScrollView, Image } from 'react-native';
 import { useRouter } from 'expo-router';
+import { useDispatch, useSelector } from 'react-redux';
+import { setUser } from '@/redux/slices/userSlice'; // Make sure the path to your slice is correct
+import { RootState } from '@/redux/store'; // Import RootState to type the selector
 
 const EditProfile: React.FC = () => {
   const router = useRouter();
-  const [name, setName] = useState('Pratish Prabhakar Pooja');
-  const [email, setEmail] = useState('pratish.poojary@gmail.com');
-  const [location, setLocation] = useState('');
+  const dispatch = useDispatch();
 
+  // Fetch the current user data from Redux store
+  const user = useSelector((state: RootState) => state.user);
+
+  // Initialize the form state with the current user data
+  const [name, setName] = useState(user.name);
+  const [email, setEmail] = useState(user.email);
+  const [location, setLocation] = useState(user.location);
+
+  // Save button handler to dispatch the updated data to the Redux store
   const handleSave = () => {
-    // Add your save logic here
+    dispatch(setUser({ name, email, location }));
     console.log('Profile updated:', { name, email, location });
-    router.back(); // Go back to the previous page
+    router.back(); // Navigate back to the previous page
   };
 
+  // Cancel button to just navigate back without saving changes
   const handleCancel = () => {
     router.back(); // Go back to the previous page
   };
@@ -22,7 +33,7 @@ const EditProfile: React.FC = () => {
     <ScrollView contentContainerStyle={styles.container}>
       <View style={styles.avatarContainer}>
         <Image
-          source={require('@/assets/images/Pratish Poojary Photo.jpg')}  // Ensure the path is correct
+          source={require('@/assets/images/Pratish Poojary Photo.jpg')} // Ensure the path is correct
           style={styles.avatar}
         />
         <TouchableOpacity style={styles.changeAvatarButton}>

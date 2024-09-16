@@ -2,9 +2,12 @@ import React from 'react';
 import { View, Text, StyleSheet, Image, TouchableOpacity } from 'react-native';
 import { useFonts } from 'expo-font';
 import { useRouter } from 'expo-router';
+import { useDispatch, useSelector } from 'react-redux';
+import { RootState } from '@/redux/store'; // Import RootState to type the selector
 
 const HeaderComponent: React.FC = () => {
   const router = useRouter();
+  const user = useSelector((state: RootState) => state.user);
 
   // Loading the custom font
   const [fontsLoaded] = useFonts({
@@ -35,8 +38,8 @@ const HeaderComponent: React.FC = () => {
       {/* User Info */}
       <View style={styles.rightSection}>
         <View>
-          <Text style={styles.userName}>Pratish Poojary</Text>
-          <Text style={styles.location}>Maharashtra, India</Text>
+          <Text style={styles.userName}>{user.name}</Text>
+          <Text style={styles.location}>{user.location}</Text>
         </View>
         <TouchableOpacity onPress={handleProfile}>
           <Image

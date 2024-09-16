@@ -3,8 +3,13 @@ import { View, Text, Image, StyleSheet, TouchableOpacity, Modal, Pressable } fro
 import { FontAwesome5, MaterialIcons } from '@expo/vector-icons';
 import { LinearGradient } from 'expo-linear-gradient';
 import { useRouter } from 'expo-router';
+import { useDispatch, useSelector } from 'react-redux';
+import { setUser } from '@/redux/slices/userSlice'; // Make sure the path to your slice is correct
+import { RootState } from '@/redux/store'; // Import RootState to type the selector
+
 
 const Profile: React.FC = () => {
+  const user = useSelector((state: RootState) => state.user);
   const router = useRouter();
   const [modalVisible, setModalVisible] = useState(false);  // State for the modal visibility
   const [logoutMessageVisible, setLogoutMessageVisible] = useState(false);  // State for showing the logout message
@@ -52,8 +57,8 @@ const Profile: React.FC = () => {
           style={styles.avatar}
         />
         <View style={styles.userDetails}>
-          <Text style={styles.userName}>Pratish Prabhakar Poojary</Text>
-          <Text style={styles.userEmail}>pratish.poojary@gmail.com</Text>
+          <Text style={styles.userName}>{user.name}</Text>
+          <Text style={styles.userEmail}>{user.email}</Text>
           <TouchableOpacity onPress={() => router.push('/View activities')}>
             <View style={styles.activitiesRow}>
               <Text style={styles.viewActivities}>View activities</Text>
