@@ -4,6 +4,7 @@ import { useFonts } from 'expo-font';
 import { useRouter } from 'expo-router';
 import { useDispatch, useSelector } from 'react-redux';
 import { RootState } from '@/redux/store'; // Import RootState to type the selector
+// import profile from '../app/screens/Profile'
 
 const HeaderComponent: React.FC = () => {
   const router = useRouter();
@@ -15,7 +16,7 @@ const HeaderComponent: React.FC = () => {
   });
 
   const handleProfile = () => {
-    router.push('/Profile'); // Ensure this matches the exact route name
+    router.push('../screens/Profile'); // Ensure this matches the exact route name
   };
 
   if (!fontsLoaded) {

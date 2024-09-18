@@ -1,4 +1,7 @@
+import { useSelector } from 'react-redux';
+import { RootState } from '@/redux/store';
 import { Tabs } from 'expo-router';
+import LoginScreen from '../screens/Login';
 import React from 'react';
 import { StyleSheet, View } from 'react-native';
 
@@ -9,58 +12,60 @@ import Header from '@/components/Header';
 
 export default function TabLayout() {
   const colorScheme = useColorScheme();
+  const isLoggedIn = useSelector((state: RootState) => state.auth.isLoggedIn);
 
-  return (
+return (
     <>
-      {/* Custom Header */}
       <Header />
-
-      {/* Tabs Configuration */}
-      <Tabs
-        screenOptions={{
-          tabBarActiveTintColor: '#000', // Active Tab Color, set to black or any color you prefer
-          headerShown: false, // Hide header
-          tabBarStyle: styles.tabBarStyle,  // Apply custom style
-        }}
-      >
-        {/* Home Tab ------------------------------------------------------------------------------------------------------------------*/}
-        <Tabs.Screen
-          name="index"
-          options={{
-            title: 'Home',
-            tabBarIcon: ({ color, focused }) => (
-              <TabBarIcon name="home" color={color} />
-            ),
+      {/* {!isLoggedIn ? (
+        <LoginScreen />
+      ):( */}
+        <Tabs
+          screenOptions={{
+            tabBarActiveTintColor: '#000', // Active Tab Color, set to black or any color you prefer
+            headerShown: false, // Hide header
+            tabBarStyle: styles.tabBarStyle,  // Apply custom style
           }}
-        />
+        >
+          {/* Home Tab ------------------------------------------------------------------------------------------------------------------*/}
+          <Tabs.Screen
+            name="index"
+            options={{
+              title: 'Home',
+              tabBarIcon: ({ color, focused }) => (
+                <TabBarIcon name="home" color={color} />
+              ),
+            }}
+          />
 
-        {/* Custom Centered Scan Tab --------------------------------------------------------------------------------------------------*/}
-        <Tabs.Screen
-          name="Scanbutton" // Link to the actual Scan file
-          options={{
-            title: '',
-            tabBarIcon: ({ color, focused }) => (
-              <View style={styles.scannerContainer}>
-                <View style={styles.scanButton}>
-                  <TabBarIcon name="scan1" color="#000" />
+          {/* Custom Centered Scan Tab --------------------------------------------------------------------------------------------------*/}
+          <Tabs.Screen
+            name="Scanbutton" // Link to the actual Scan file
+            options={{
+              title: '',
+              tabBarIcon: ({ color, focused }) => (
+                <View style={styles.scannerContainer}>
+                  <View style={styles.scanButton}>
+                    <TabBarIcon name="scan1" color="#000" />
+                  </View>
                 </View>
-              </View>
-            ),
-            tabBarLabel: () => null,  // Hide label for Scan button
-          }}
-        />
+              ),
+              tabBarLabel: () => null,  // Hide label for Scan button
+            }}
+          />
 
-        {/* Menu Tab --------------------------------------------------------------------------------------------------------------------*/}
-        <Tabs.Screen
-          name="Menu"
-          options={{
-            title: 'Menu',
-            tabBarIcon: ({ color, focused }) => (
-              <TabBarIcon name="menufold" color={color} />
-            ),
-          }}
-        />
-      </Tabs>
+          {/* Menu Tab --------------------------------------------------------------------------------------------------------------------*/}
+          <Tabs.Screen
+            name="Menu"
+            options={{
+              title: 'Menu',
+              tabBarIcon: ({ color, focused }) => (
+                <TabBarIcon name="menufold" color={color} />
+              ),
+            }}
+          />
+        </Tabs>
+      {/* )} */}
     </>
   );
 }

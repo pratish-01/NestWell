@@ -2,14 +2,10 @@ import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 
 interface AuthState {
   isLoggedIn: boolean;
-  username: string;
-  password: string;
 }
 
 const initialState: AuthState = {
   isLoggedIn: false,
-  username: '',
-  password: ''
 };
 
 const authSlice = createSlice({
@@ -17,14 +13,11 @@ const authSlice = createSlice({
   initialState,
   reducers: {
     login: (state, action: PayloadAction<{ username: string; password: string }>) => {
-      state.isLoggedIn = true;
-      state.username = action.payload.username;
-      state.password = action.payload.password;
+      // Here you would usually perform async actions like API calls
+      state.isLoggedIn = true; // Update the state based on login success
     },
     logout: (state) => {
       state.isLoggedIn = false;
-      state.username = '';
-      state.password = '';
     },
   },
 });

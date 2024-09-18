@@ -1,21 +1,27 @@
 import React, { useState } from 'react';
-import { View, Text, TextInput, TouchableOpacity, StyleSheet } from 'react-native';
-import AsyncStorage from '@react-native-async-storage/async-storage';
+import { View, TextInput, Text, StyleSheet, TouchableOpacity, Alert } from 'react-native';
 import { useRouter } from 'expo-router';
 
-const LoginScreen = () => {
+interface LoginScreenProps {
+  setIsLoggedIn: (loggedIn: boolean) => void;
+}
+
+export default function LoginScreen({ setIsLoggedIn }: LoginScreenProps) {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const router = useRouter();
 
-  const handleLogin = async () => {
-    if (username && password) {
-      // Save login state
-      await AsyncStorage.setItem('isLoggedIn', 'true');
-      // Navigate to the main app (Home)
-      router.replace('/index');
+  const handleLogin = () => {
+    if (username === 'xyz' && password === '12345678') {
+      // Mark user as logged in
+      setIsLoggedIn(true);
+
+      // Delay navigation until the app is ready
+      setTimeout(() => {
+        router.push('/(tabs)'); // Navigate after ensuring the layout has mounted
+      }, 50);
     } else {
-      alert('Please enter both username and password');
+      Alert.alert('Login Failed', 'Incorrect username or password');
     }
   };
 
@@ -40,7 +46,7 @@ const LoginScreen = () => {
       </TouchableOpacity>
     </View>
   );
-};
+}
 
 const styles = StyleSheet.create({
   container: {
@@ -56,9 +62,9 @@ const styles = StyleSheet.create({
     textAlign: 'center',
   },
   input: {
-    borderWidth: 1,
+    borderWidth: 2,
     borderColor: '#ccc',
-    borderRadius: 10,
+    borderRadius: 5,
     padding: 10,
     marginBottom: 20,
   },
@@ -73,5 +79,3 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
   },
 });
-
-export default LoginScreen;

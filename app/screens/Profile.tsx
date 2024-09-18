@@ -7,7 +7,6 @@ import { useDispatch, useSelector } from 'react-redux';
 import { setUser } from '@/redux/slices/userSlice'; // Make sure the path to your slice is correct
 import { RootState } from '@/redux/store'; // Import RootState to type the selector
 
-
 const Profile: React.FC = () => {
   const user = useSelector((state: RootState) => state.user);
   const router = useRouter();
@@ -38,6 +37,14 @@ const Profile: React.FC = () => {
 
   return (
     <View style={styles.container}>
+      {/* Custom Header */}
+      <View style={styles.header}>
+        <TouchableOpacity onPress={() => router.back()} style={styles.backButton}>
+          <MaterialIcons name="arrow-back" size={30} color="#fff" />
+        </TouchableOpacity>
+        <Text style={styles.headerTitle}>Profile</Text>
+      </View>
+
       {/* Show "Logged Out" message if logoutMessageVisible is true */}
       {logoutMessageVisible && (
         <View style={styles.logoutMessageContainer}>
@@ -59,7 +66,7 @@ const Profile: React.FC = () => {
         <View style={styles.userDetails}>
           <Text style={styles.userName}>{user.name}</Text>
           <Text style={styles.userEmail}>{user.email}</Text>
-          <TouchableOpacity onPress={() => router.push('/View activities')}>
+          <TouchableOpacity onPress={() => router.push('../screens/View activities')}>
             <View style={styles.activitiesRow}>
               <Text style={styles.viewActivities}>View activities</Text>
               <MaterialIcons name="keyboard-arrow-right" size={16} style={styles.arrowIcon} />
@@ -72,7 +79,7 @@ const Profile: React.FC = () => {
       <View style={styles.actionButtons}>
         <TouchableOpacity 
           style={styles.actionButton}
-          onPress={() => router.push('/Favorites')}
+          onPress={() => router.push('../screens/Favorites')}
         >
           <FontAwesome5 name="star" size={24} color="#000" />
           <Text style={styles.actionText}>Favorites</Text>
@@ -80,7 +87,7 @@ const Profile: React.FC = () => {
 
         <TouchableOpacity 
           style={styles.actionButton}
-          onPress={() => router.push('/Buy history')}
+          onPress={() => router.push('../screens/Buy history')}
         >
           <FontAwesome5 name="book" size={24} color="#000" />
           <Text style={styles.actionText}>Buy History</Text>
@@ -90,7 +97,7 @@ const Profile: React.FC = () => {
       {/* Edit Profile */}
       <TouchableOpacity 
         style={styles.profileOption}
-        onPress={() => router.push('/Edit profile')}
+        onPress={() => router.push('../screens/Edit profile')}
       >
         <View style={styles.optionRow}>
           <FontAwesome5 name="user" size={20} color="black" />
@@ -102,7 +109,7 @@ const Profile: React.FC = () => {
       {/* Settings */}
       <TouchableOpacity 
         style={styles.profileOption}
-        onPress={() => router.push('/Settings')}
+        onPress={() => router.push('../screens/Settings')}
       >
         <View style={styles.optionRow}>
           <FontAwesome5 name="cog" size={20} color="black" />
@@ -155,14 +162,35 @@ const Profile: React.FC = () => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    padding: 20,
+    padding: 0,
     backgroundColor: '#f5f5f5',
+  },
+  header: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    backgroundColor: '#10365B',
+    padding: 17,
+    marginBottom: 20,
+    justifyContent: 'space-between',  // Space items between each other
+  },
+  backButton: {
+    marginTop:27,
+    marginLeft:7,
+  },
+  headerTitle: {
+    fontSize: 23,
+    marginLeft:15,
+    marginTop:25,
+    color: '#fff',
+    fontWeight: 'bold',
+    flex: 1,  // Takes up available space to center title
   },
   logoutMessageContainer: {
     backgroundColor: '#FF0000',
     padding: 10,
     borderRadius: 10,
     marginBottom: 20,
+    marginHorizontal: 20,  // Add margin to move it away from screen edges
   },
   logoutMessage: {
     color: '#FFFFFF',
@@ -176,6 +204,7 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     alignItems: 'center',
     marginBottom: 20,
+    marginHorizontal: 20,  // Add margin to move it away from screen edges
   },
   avatar: {
     width: 70,
@@ -214,6 +243,7 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'space-between',
     marginBottom: 30,
+    marginHorizontal: 20,  // Add margin to move it away from screen edges
   },
   actionButton: {
     backgroundColor: '#ffffff',
@@ -245,11 +275,12 @@ const styles = StyleSheet.create({
     justifyContent: 'space-between',
     alignItems: 'center',
     marginBottom: 15,
+    marginHorizontal: 20,  // Add margin to move it away from screen edges
     shadowColor: '#000',
     shadowOffset: { width: 0, height: 2 },
-    shadowOpacity: 0.1,
+    shadowOpacity: 0.2,
     shadowRadius: 3,
-    elevation: 3,
+    elevation: 4,
   },
   optionRow: {
     flexDirection: 'row',
@@ -257,7 +288,7 @@ const styles = StyleSheet.create({
   },
   optionText: {
     fontSize: 16,
-    marginLeft: 15,
+    marginLeft: 10,
   },
 
   // Custom Modal Styles
@@ -313,3 +344,4 @@ const styles = StyleSheet.create({
 });
 
 export default Profile;
+

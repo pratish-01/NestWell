@@ -4,6 +4,7 @@ import { useRouter } from 'expo-router';
 import { useDispatch, useSelector } from 'react-redux';
 import { setUser } from '@/redux/slices/userSlice'; // Make sure the path to your slice is correct
 import { RootState } from '@/redux/store'; // Import RootState to type the selector
+import { MaterialIcons } from '@expo/vector-icons'; // Import the back icon
 
 const EditProfile: React.FC = () => {
   const router = useRouter();
@@ -31,6 +32,15 @@ const EditProfile: React.FC = () => {
 
   return (
     <ScrollView contentContainerStyle={styles.container}>
+      {/* Custom Header */}
+      <View style={styles.header}>
+        <TouchableOpacity onPress={() => router.back()} style={styles.backButton}>
+          <MaterialIcons name="arrow-back" size={30} color="#fff" />
+        </TouchableOpacity>
+        <Text style={styles.headerTitle}>Edit Profile</Text>
+      </View>
+
+      {/* Avatar and form fields */}
       <View style={styles.avatarContainer}>
         <Image
           source={require('@/assets/images/Pratish Poojary Photo.jpg')} // Ensure the path is correct
@@ -79,8 +89,28 @@ const EditProfile: React.FC = () => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    padding: 20,
+    padding: 0,
     backgroundColor: '#f5f5f5',
+  },
+  header: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    backgroundColor: '#10365B',
+    padding: 17,
+    marginBottom: 20,
+    justifyContent: 'space-between',  // Space items between each other
+  },
+  backButton: {
+    marginTop:27,
+    marginLeft:7,
+  },
+  headerTitle: {
+    fontSize: 23,
+    marginLeft:15,
+    marginTop:25,
+    color: '#fff',
+    fontWeight: 'bold',
+    flex: 1,  // Takes up available space to center title
   },
   avatarContainer: {
     alignItems: 'center',
@@ -106,6 +136,8 @@ const styles = StyleSheet.create({
     padding: 15,
     borderRadius: 10,
     marginBottom: 15,
+    marginLeft:15,
+    marginRight:15,
     fontSize: 16,
   },
   buttonsContainer: {
@@ -117,6 +149,8 @@ const styles = StyleSheet.create({
     padding: 15,
     borderRadius: 10,
     marginHorizontal: 5,
+    marginEnd:15,
+    marginStart:15,
     alignItems: 'center',
   },
   cancelButton: {

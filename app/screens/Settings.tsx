@@ -28,7 +28,15 @@ const Settings: React.FC = () => {
   return (
     <View style={styles.container}>
 
-      {/* Notification ------------------------------------------------------------------------------------------------------------ */}
+      {/* Custom Header */}
+      <View style={styles.header}>
+        <TouchableOpacity onPress={() => router.back()} style={styles.backButton}>
+          <MaterialIcons name="arrow-back" size={30} color="#fff" />
+        </TouchableOpacity>
+        <Text style={styles.headerTitle}>Settings</Text>
+      </View>
+
+      {/* Notification */}
       <TouchableOpacity
         style={styles.option}
         onPress={() => showModal('Notification')}
@@ -40,7 +48,7 @@ const Settings: React.FC = () => {
         <MaterialIcons name="keyboard-arrow-right" size={24} color="black" />
       </TouchableOpacity>
 
-      {/* Location access ----------------------------------------------------------------------------------------------------------- */}
+      {/* Location access */}
       <TouchableOpacity
         style={styles.option}
         onPress={() => showModal('LocationAccess')}
@@ -52,7 +60,7 @@ const Settings: React.FC = () => {
         <MaterialIcons name="keyboard-arrow-right" size={24} color="black" />
       </TouchableOpacity>
 
-      {/* Save login info ----------------------------------------------------------------------------------------------------------- */}
+      {/* Save login info */}
       <TouchableOpacity
         style={styles.option}
         onPress={() => showModal('SaveLoginInfo')}
@@ -64,7 +72,7 @@ const Settings: React.FC = () => {
         <MaterialIcons name="keyboard-arrow-right" size={24} color="black" />
       </TouchableOpacity>
 
-      {/* Custom Modals for Each Setting ------------------------------------------------------------------------------------------ */}
+      {/* Custom Modals for Each Setting */}
       {['Notification', 'LocationAccess', 'SaveLoginInfo'].map(option => (
         <Modal
           key={option}
@@ -97,8 +105,28 @@ const Settings: React.FC = () => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    padding: 20,
+    padding: 0,
     backgroundColor: '#f5f5f5',
+  },
+  header: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    backgroundColor: '#10365B',
+    padding: 17,
+    marginBottom: 20,
+    justifyContent: 'space-between',  // Space items between each other
+  },
+  backButton: {
+    marginTop: 27,
+    marginLeft: 7,
+  },
+  headerTitle: {
+    fontSize: 23,
+    marginLeft: 15,
+    marginTop: 25,
+    color: '#fff',
+    fontWeight: 'bold',
+    flex: 1,  // Takes up available space to center title
   },
   option: {
     backgroundColor: '#ffffff',
@@ -109,6 +137,8 @@ const styles = StyleSheet.create({
     justifyContent: 'space-between',
     alignItems: 'center',
     marginBottom: 15,
+    marginEnd:15,
+    marginStart:15,
     shadowColor: '#000',
     shadowOffset: { width: 0, height: 2 },
     shadowOpacity: 0.1,

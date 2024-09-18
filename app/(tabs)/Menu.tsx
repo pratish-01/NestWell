@@ -14,7 +14,7 @@ const Menu = () => {
         <View style={styles.buttonRow}>
           <TouchableOpacity
             style={styles.card}
-            onPress={() => router.push('/Support')} // Add route to Support page
+            onPress={() => router.push('/Menuscreens/Support')} // Add route to Support page
           >
             <FontAwesome5 name="paper-plane" size={24} color="#2d4379" />
             <Text style={styles.cardText}>Report problems</Text>
@@ -22,7 +22,7 @@ const Menu = () => {
 
           <TouchableOpacity
             style={styles.card}
-            onPress={() => router.push('/Rate Us')} // Add route to Rate Us page
+            onPress={() => router.push('/Menuscreens/Rate Us')} // Add route to Rate Us page
           >
             <MaterialIcons name="rate-review" size={24} color="#2d4379" />
             <Text style={styles.cardText}>Rate Us</Text>
@@ -43,7 +43,7 @@ const Menu = () => {
         <Text style={styles.sectionHeader}>Partners information</Text>
         <TouchableOpacity
           style={styles.menuItem}
-          onPress={() => router.push('/Nearest Outlets')} // Add route to Nearest Outlets page
+          onPress={() => router.push('/Menuscreens/Nearest Outlets')} // Add route to Nearest Outlets page
         >
           <MaterialIcons name="store" size={24} color="#2d4379" />
           <Text style={styles.menuText}>Nearest outlets</Text>
@@ -52,7 +52,7 @@ const Menu = () => {
 
         <TouchableOpacity
           style={styles.menuItem}
-          onPress={() => router.push('/Product Sources')} // Add route to Product Sources page
+          onPress={() => router.push('/Menuscreens/Product Sources')} // Add route to Product Sources page
         >
           <FontAwesome5 name="shopping-cart" size={24} color="#2d4379" />
           <Text style={styles.menuText}>Product sources</Text>
@@ -64,7 +64,7 @@ const Menu = () => {
 
         <TouchableOpacity
           style={styles.menuItem}
-          onPress={() => router.push('/Share the App')} // Add route to Share the App page
+          onPress={() => router.push('/Menuscreens/Share the App')} // Add route to Share the App page
         >
           <Ionicons name="share-social" size={24} color="#2d4379" />
           <Text style={styles.menuText}>Share the app</Text>
@@ -73,7 +73,7 @@ const Menu = () => {
 
         <TouchableOpacity
           style={styles.menuItem}
-          onPress={() => router.push('/Account Privacy')} // Add route to Account Privacy page
+          onPress={() => router.push('/Menuscreens/Account Privacy')} // Add route to Account Privacy page
         >
           <MaterialIcons name="privacy-tip" size={24} color="#2d4379" />
           <Text style={styles.menuText}>Account privacy</Text>
@@ -82,7 +82,7 @@ const Menu = () => {
 
         <TouchableOpacity
           style={styles.menuItem}
-          onPress={() => router.push('/About Us')} // Add route to About Us page
+          onPress={() => router.push('/Menuscreens/About Us')} // Add route to About Us page
         >
           <Ionicons name="information-circle" size={24} color="#2d4379" />
           <Text style={styles.menuText}>About us</Text>
